@@ -1,18 +1,18 @@
 from flask import render_template, redirect, url_for
 import g4f
-from summarizer import URLForm
 from summarizer import app, fetch_transcript
+from summarizer.forms import URLForm
 
 @app.route('/', methods=['GET', 'POST'])
 def main_page():
     form = URLForm()
     if form.validate_on_submit():
         id = form.id.data
-        print(id)
+        print("ID = ", id)
         lang = form.lang.data
-        print(lang)
+        print("Lang = ", lang)
         model = form.model.data
-        print(model)
+        print("Model = ", model)
         return redirect(url_for('summary_page', id=id, lang=lang, model=model))
 
 
